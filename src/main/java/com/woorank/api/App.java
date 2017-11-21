@@ -31,16 +31,17 @@ public class App {
 
         val uri = URI.create(WOORANK_API);
         val signer = new ClientSigner(WOORANK_API_AUTH, WOORANK_API_KEY);
+        val client = new Client(uri, signer);
 
-        val createProject = new CreateProjectOperation("wordlift.io");
-        val resolvedUrl = new Client(uri, signer).execute(createProject);
+        val createProject = new CreateProjectOperation("salzburgerland.com");
+        val resolvedUrl = client.execute(createProject);
 
         System.out.println("Resolved URL :: " + resolvedUrl);
 
-        val getKeywordsData = new GetKeywordsDataOperation("wordlift.io");
-        val keywords = new Client(uri, signer).execute(getKeywordsData);
+        val getKeywordsData = new GetKeywordsDataOperation("salzburgerland.com");
+        val keywords = client.execute(getKeywordsData);
 
-        keywords.forEach(x-> System.out.println(x.getKeyword()));
+        keywords.forEach(x -> System.out.println(x.getKeyword()));
 
         System.out.println(keywords.toString());
 
