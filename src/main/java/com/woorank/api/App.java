@@ -4,6 +4,7 @@ import com.woorank.api.client.Client;
 import com.woorank.api.client.ClientSigner;
 import com.woorank.api.ops.CreateProjectOperation;
 import com.woorank.api.ops.GetKeywordsDataOperation;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
 import java.net.URI;
@@ -23,7 +24,7 @@ public class App {
         try {
             doCall();
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
     }
 
@@ -33,12 +34,12 @@ public class App {
         val signer = new ClientSigner(WOORANK_API_AUTH, WOORANK_API_KEY);
         val client = new Client(uri, signer);
 
-        val createProject = new CreateProjectOperation("salzburgerland.com");
+        val createProject = new CreateProjectOperation("wordlift.io");
         val resolvedUrl = client.execute(createProject);
 
         System.out.println("Resolved URL :: " + resolvedUrl);
 
-        val getKeywordsData = new GetKeywordsDataOperation("salzburgerland.com");
+        val getKeywordsData = new GetKeywordsDataOperation("wordlift.io");
         val keywords = client.execute(getKeywordsData);
 
         keywords.forEach(x -> System.out.println(x.getKeyword()));

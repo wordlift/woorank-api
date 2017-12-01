@@ -21,6 +21,8 @@ public class Keyword {
     private String keyword;
     private String country;
     private String language;
+    private LatestResult latestResult;
+    private LatestVolume latestVolume;
     private ArrayList<KeywordUrl> urls;
 
 }
