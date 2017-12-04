@@ -16,7 +16,7 @@ import java.time.Instant;
  */
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-class KeywordUrlResult {
+public class KeywordUrlResult {
 
     private String id;
 

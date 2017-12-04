@@ -1,5 +1,6 @@
 package com.woorank.api.client;
 
+import com.woorank.api.ops.InvalidResultException;
 import com.woorank.api.ops.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -44,7 +45,7 @@ public class Client {
      * @throws Exception thrown in case of http errors or response conversion errors.
      * @since 1.0.0
      */
-    public <U> U execute(Operation<? extends HttpRequestBase, U> operation) throws Exception {
+    public <U> U execute(Operation<? extends HttpRequestBase, U> operation) throws Exception, InvalidResultException {
 
         // Use an auto closeable client.
         try (CloseableHttpClient client = HttpClients.createDefault()) {

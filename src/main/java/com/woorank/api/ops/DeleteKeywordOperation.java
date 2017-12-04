@@ -14,6 +14,9 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Collections;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 /**
  * Operations: Delete Keyword
@@ -46,9 +49,11 @@ public class DeleteKeywordOperation implements Operation<HttpDelete, String> {
      */
     public HttpDelete toHttpRequest(URI baseUri) throws JsonProcessingException {
 
-        // Get the URI for the requested domain.
-        val keywords = this.request.getKeywords().toArray(new String[this.request.getKeywords().size()]);
-        val uri = String.format(URI, this.domain,  keywords);
+        // Format the keywords as a comma-separated string.
+        val keywords = this.request.getKeywords().stream().collect(joining(","));
+
+        // Prepare the URI with the keywords, country and language parameters.
+        val uri = String.format(URI, this.domain, keywords, this.request.getCountry(), this.request.getLanguage());
 
         // Delete a post request.
         val request = new HttpDelete();

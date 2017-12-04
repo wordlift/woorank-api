@@ -4,6 +4,7 @@ import com.woorank.api.client.Client;
 import com.woorank.api.client.ClientSigner;
 import com.woorank.api.ops.CreateProjectOperation;
 import com.woorank.api.ops.GetKeywordsDataOperation;
+import com.woorank.api.ops.InvalidResultException;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
@@ -23,12 +24,12 @@ public class App {
 
         try {
             doCall();
-        } catch (Exception e) {
+        } catch (Exception | InvalidResultException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void doCall() throws Exception {
+    private static void doCall() throws Exception, InvalidResultException {
 
         val uri = URI.create(WOORANK_API);
         val signer = new ClientSigner(WOORANK_API_AUTH, WOORANK_API_KEY);

@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-class KeywordUrl {
+public class KeywordUrl {
 
     private String id;
     private String url;

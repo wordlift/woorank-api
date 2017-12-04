@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.woorank.api.utils.JsonEntity;
 import com.woorank.api.utils.SingletonMap;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -21,6 +22,7 @@ import java.util.Collections;
  * @since 1.0.0
  */
 @RequiredArgsConstructor
+@Slf4j
 public class CreateProjectOperation implements Operation<HttpPost, String> {
 
     /**
@@ -42,6 +44,8 @@ public class CreateProjectOperation implements Operation<HttpPost, String> {
      */
     public HttpPost toHttpRequest(URI baseUri) throws JsonProcessingException {
 
+        if (log.isDebugEnabled()) log.debug("Preparing a request with domain " + this.domain + "...");
+
         // Create a post request.
         val request = new HttpPost();
         request.setURI(baseUri.resolve(RELATIVE_URI));
@@ -54,12 +58,19 @@ public class CreateProjectOperation implements Operation<HttpPost, String> {
      * {@inheritDoc}
      */
     @Override
-    public String getResult(HttpEntity entity) throws IOException {
+    public String getResult(HttpEntity entity) throws IOException, InvalidResultException {
 
         // Get the single value from the map `{"resolveUrl": "example.org"}`.
         val content = EntityUtils.toString(entity);
 
-        return SingletonMap.getValue(content);
+        try {
+            return SingletonMap.getValue(content);
+        } catch (Exception e) {
+            if (log.isErrorEnabled()) log.error("An error occurred: " + content);
+
+            throw new InvalidResultException();
+        }
+
     }
 
 }

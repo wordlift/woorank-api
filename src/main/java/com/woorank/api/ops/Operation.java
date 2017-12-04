@@ -41,6 +41,6 @@ public interface Operation<T extends HttpRequestBase, U> {
      * @throws Exception thrown in case of errors converting the response.
      * @since 1.0.0
      */
-    U getResult(HttpEntity entity) throws Exception;
+    U getResult(HttpEntity entity) throws Exception, InvalidResultException;
 
 }
