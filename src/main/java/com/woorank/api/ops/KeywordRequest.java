@@ -1,8 +1,8 @@
 package com.woorank.api.ops;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.util.Set;
 
@@ -10,10 +10,9 @@ import java.util.Set;
 @Builder
 public class KeywordRequest {
 
-    @NotNull
+    @NonNull
     private final Set<String> keywords;
 
-    @NotNull
     private final String country;
 
     private final String language;

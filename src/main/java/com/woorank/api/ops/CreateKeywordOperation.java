@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.woorank.api.utils.JsonEntity;
 import com.woorank.api.utils.SingletonMap;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -20,6 +21,7 @@ import java.net.URI;
  * @since 1.0.0
  */
 @RequiredArgsConstructor
+@Slf4j
 public class CreateKeywordOperation implements Operation<HttpPost, String> {
 
     /**
@@ -62,6 +64,8 @@ public class CreateKeywordOperation implements Operation<HttpPost, String> {
 
         // Get the single value from the map `{"resolveUrl": "example.org"}`.
         val content = EntityUtils.toString(entity);
+
+        if (log.isTraceEnabled()) log.trace("Response content: " + content);
 
         return SingletonMap.getValue(content);
     }

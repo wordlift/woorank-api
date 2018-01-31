@@ -3,6 +3,7 @@ package com.woorank.api.client;
 import com.woorank.api.ops.InvalidResultException;
 import com.woorank.api.ops.Operation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -18,6 +19,7 @@ import java.net.URI;
  * @since 1.0.0
  */
 @RequiredArgsConstructor
+@Slf4j
 public class Client {
 
     /**
@@ -46,6 +48,8 @@ public class Client {
      * @since 1.0.0
      */
     public <U> U execute(Operation<? extends HttpRequestBase, U> operation) throws Exception, InvalidResultException {
+
+        if (log.isTraceEnabled()) log.trace("Executing operation " + operation.toString() + "...");
 
         // Use an auto closeable client.
         try (CloseableHttpClient client = HttpClients.createDefault()) {

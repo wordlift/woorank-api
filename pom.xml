@@ -84,4 +84,15 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <downloadUrl>http://repo.maven.insideout.io/</downloadUrl>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>insideout10-maven-repo</id>
+            <name>Insideout10 maven repo</name>
+            <url>scp://repo.maven.insideout.io/home/repo/www/</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
 </project>
