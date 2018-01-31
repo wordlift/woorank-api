@@ -14,13 +14,6 @@ import org.apache.http.HttpMessage;
 public class ClientSigner implements Signer {
 
     /**
-     * The auth key.
-     *
-     * @since 1.0.0
-     */
-    private final String auth;
-
-    /**
      * The api key.
      *
      * @since 1.0.0
@@ -34,7 +27,6 @@ public class ClientSigner implements Signer {
     public void sign(HttpMessage message) {
 
         message.addHeader("x-api-key", this.key);
-        message.addHeader("auth", this.auth);
 
     }
 

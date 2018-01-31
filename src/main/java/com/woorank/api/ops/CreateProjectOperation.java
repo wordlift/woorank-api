@@ -2,6 +2,7 @@ package com.woorank.api.ops;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.woorank.api.utils.JsonEntity;
+import com.woorank.api.utils.JsonUtils;
 import com.woorank.api.utils.SingletonMap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,7 @@ import java.util.Collections;
  */
 @RequiredArgsConstructor
 @Slf4j
-public class CreateProjectOperation implements Operation<HttpPost, String> {
+public class CreateProjectOperation extends AbstractOperation<HttpPost, String> {
 
     /**
      * The API relative URL.
@@ -68,7 +69,9 @@ public class CreateProjectOperation implements Operation<HttpPost, String> {
         } catch (Exception e) {
             if (log.isErrorEnabled()) log.error("An error occurred: " + content);
 
-            throw new InvalidResultException();
+            val error = getError(content);
+
+            throw new InvalidResultException(error);
         }
 
     }
