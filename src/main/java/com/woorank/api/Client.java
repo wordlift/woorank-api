@@ -1,4 +1,4 @@
-package com.woorank.api.client;
+package com.woorank.api;
 
 import com.woorank.api.ops.InvalidResultException;
 import com.woorank.api.ops.Operation;
@@ -23,7 +23,7 @@ import java.net.URI;
 public class Client {
 
     /**
-     * The base URI for Woorank's API.
+     * The base URI for WooRank's API.
      *
      * @since 1.0.0
      */
@@ -35,6 +35,19 @@ public class Client {
      * @since 1.0.0
      */
     private final Signer signer;
+
+    /**
+     * Create a Client instance using the default URI.
+     *
+     * @param signer The {@link Signer} instance.
+     * @since 1.1.0
+     */
+    public Client(Signer signer) {
+
+        this.uri = URI.create("https://api.woorank.com");
+        this.signer = signer;
+
+    }
 
     /**
      * Execute operations.
@@ -62,7 +75,7 @@ public class Client {
             try (val response = client.execute(request)) {
 
                 // Have the operation convert the response into the actual result type.
-                return operation.getResult(response.getEntity());
+                return operation.getResult(response);
             }
 
         }

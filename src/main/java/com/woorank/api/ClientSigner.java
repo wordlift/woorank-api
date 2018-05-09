@@ -1,4 +1,4 @@
-package com.woorank.api.client;
+package com.woorank.api;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpMessage;

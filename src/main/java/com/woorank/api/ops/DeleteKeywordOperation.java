@@ -21,7 +21,7 @@ import static java.util.stream.Collectors.joining;
  * @since 1.0.0
  */
 @RequiredArgsConstructor
-public class DeleteKeywordOperation implements Operation<HttpDelete, String> {
+public class DeleteKeywordOperation extends AbstractOperation<HttpDelete, String> {
 
     /**
      * The API relative URL.

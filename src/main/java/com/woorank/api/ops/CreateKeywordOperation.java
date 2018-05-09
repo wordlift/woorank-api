@@ -22,7 +22,7 @@ import java.net.URI;
  */
 @RequiredArgsConstructor
 @Slf4j
-public class CreateKeywordOperation implements Operation<HttpPost, String> {
+public class CreateKeywordOperation extends AbstractOperation<HttpPost, String> {
 
     /**
      * The API relative URL.

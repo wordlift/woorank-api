@@ -1,6 +1,7 @@
 package com.woorank.api.ops;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -42,5 +43,15 @@ public interface Operation<T extends HttpRequestBase, U> {
      * @since 1.0.0
      */
     U getResult(HttpEntity entity) throws Exception, InvalidResultException;
+
+    /**
+     * Convert the {@link HttpResponse} into the result's object.
+     *
+     * @param response The {@link HttpResponse}.
+     * @return The result.
+     * @throws Exception thrown in case of errors converting the response.
+     * @since 1.0.0
+     */
+    U getResult(HttpResponse response) throws Exception, InvalidResultException;
 
 }

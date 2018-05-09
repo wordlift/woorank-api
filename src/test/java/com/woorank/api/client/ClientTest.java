@@ -1,5 +1,7 @@
 package com.woorank.api.client;
 
+import com.woorank.api.Client;
+import com.woorank.api.ClientSigner;
 import com.woorank.api.ops.CreateProjectOperation;
 import com.woorank.api.ops.InvalidResultException;
 import lombok.val;

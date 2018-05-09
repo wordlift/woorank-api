@@ -25,7 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Slf4j
-public class GetKeywordsDataOperation implements Operation<HttpGet, List<Keyword>> {
+public class GetKeywordsDataOperation extends AbstractOperation<HttpGet, List<Keyword>> {
 
     /**
      * The API path.
