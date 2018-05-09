@@ -1,19 +1,20 @@
 package com.woorank.api.ops;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.woorank.api.ops.exceptions.InvalidResponseException;
+import com.woorank.api.ops.exceptions.InvalidResultException;
+import com.woorank.api.ops.result.GetKeywordsDataResult;
 import com.woorank.api.utils.JsonUtils;
-import com.woorank.api.ops.result.Keyword;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 
 /**
  * Operations: Get Keywords Data
@@ -25,14 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Slf4j
-public class GetKeywordsDataOperation extends AbstractOperation<HttpGet, List<Keyword>> {
-
-    /**
-     * The API path.
-     *
-     * @since 1.0.0
-     */
-    private final static String URI = "/projects/%s/keywords-data";
+public class GetKeywordsDataOperation extends AbstractOperation<HttpGet, GetKeywordsDataResult> {
 
     /**
      * The project's domain.
@@ -62,36 +56,39 @@ public class GetKeywordsDataOperation extends AbstractOperation<HttpGet, List<Ke
     public HttpGet toHttpRequest(URI baseUri) throws URISyntaxException {
 
         // Set the domain in the path.
-        val path = String.format(URI, this.domain);
+        val uri = baseUri.resolve("/projects/" + this.domain + "/serp/keywords-data");
 
         // Create a builder on the base URI.
-        val builder = new URIBuilder(baseUri.resolve(path));
+        val builder = new URIBuilder(uri);
 
         // Add the country and language parameters if provided.
         if (null != country) builder.addParameter("country", country);
         if (null != language) builder.addParameter("language", language);
 
         // Finally build the URI.
-        val uri = builder.build();
+        val uriWithParameters = builder.build();
 
         // Return the request.
-        return new HttpGet(uri);
+        return new HttpGet(uriWithParameters);
+    }
+
+    @Override
+    public GetKeywordsDataResult getResult(HttpResponse response) throws Exception, InvalidResultException {
+        val code = response.getStatusLine().getStatusCode();
+
+        if (200 != code) throw new InvalidResponseException(response);
+
+        return getResult(response.getEntity());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<Keyword> getResult(HttpEntity entity) throws Exception {
+    public GetKeywordsDataResult getResult(HttpEntity entity) throws Exception {
 
-        val typeRef = new TypeReference<List<Keyword>>() {
-        };
-
-        val stream = entity.getContent();
-
-        return JsonUtils.getReader()
-                .forType(typeRef)
-                .readValue(stream);
+        return JsonUtils.getReader().forType(GetKeywordsDataResult.class)
+                .readValue(entity.getContent());
     }
 
 }

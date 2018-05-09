@@ -130,6 +130,7 @@ class CreateProjectOperationTest {
                 , () ->
                         op.getResult(new BasicHttpResponse(HttpVersion.HTTP_1_1, 500, "A project for this url already exists."))
                 , "Expecting InvalidResponseException exception.");
+
     }
 
 }
