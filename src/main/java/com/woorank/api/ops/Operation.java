@@ -1,5 +1,6 @@
 package com.woorank.api.ops;
 
+import com.woorank.api.ops.exceptions.InvalidResultException;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

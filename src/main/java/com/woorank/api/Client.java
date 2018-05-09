@@ -1,6 +1,6 @@
 package com.woorank.api;
 
-import com.woorank.api.ops.InvalidResultException;
+import com.woorank.api.ops.exceptions.InvalidResultException;
 import com.woorank.api.ops.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

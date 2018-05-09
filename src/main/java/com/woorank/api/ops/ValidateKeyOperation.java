@@ -1,6 +1,7 @@
 package com.woorank.api.ops;
 
-import org.apache.http.HttpEntity;
+import com.woorank.api.ops.exceptions.InvalidResponseException;
+import lombok.val;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 
@@ -27,8 +28,16 @@ public class ValidateKeyOperation extends AbstractOperation<HttpGet, Boolean> {
      * {@inheritDoc}
      */
     @Override
-    public Boolean getResult(HttpResponse response) {
-        return 200 == response.getStatusLine().getStatusCode();
+    public Boolean getResult(HttpResponse response) throws InvalidResponseException {
+
+        // Get the status code.
+        val code = response.getStatusLine().getStatusCode();
+
+        // Validate the status code, only 200 and 401 are valid status codes.
+        if (200 != code && 401 != code) throw new InvalidResponseException(response);
+
+        // Finally return the result.
+        return 200 == code;
     }
 
 }

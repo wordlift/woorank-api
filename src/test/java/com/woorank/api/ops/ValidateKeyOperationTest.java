@@ -1,5 +1,6 @@
 package com.woorank.api.ops;
 
+import com.woorank.api.ops.exceptions.InvalidResponseException;
 import lombok.val;
 import org.apache.http.HttpVersion;
 import org.apache.http.message.BasicHttpResponse;
@@ -9,6 +10,13 @@ import java.net.URI;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests: Validate Key.
+ * <p>
+ * Test the {@link ValidateKeyOperation} class.
+ *
+ * @since 1.0.0
+ */
 class ValidateKeyOperationTest {
 
     @Test
@@ -27,7 +35,7 @@ class ValidateKeyOperationTest {
     }
 
     @Test
-    void testValidKey() {
+    void testValidKey() throws InvalidResponseException {
 
         val op = new ValidateKeyOperation();
         val result = op.getResult(new BasicHttpResponse(HttpVersion.HTTP_1_1, 200, "OK"));
@@ -37,12 +45,24 @@ class ValidateKeyOperationTest {
     }
 
     @Test
-    void testInvalidKey() {
+    void testInvalidKey() throws InvalidResponseException {
 
         val op = new ValidateKeyOperation();
         val result = op.getResult(new BasicHttpResponse(HttpVersion.HTTP_1_1, 401, "Not Authorized"));
 
         assertFalse(result, "Expecting result to be false.");
+
+    }
+
+    @Test
+    void testInvalidResponse() {
+
+        val op = new ValidateKeyOperation();
+
+        assertThrows(InvalidResponseException.class
+                , () ->
+                        op.getResult(new BasicHttpResponse(HttpVersion.HTTP_1_1, 500, "Server Error"))
+                , "Expecting InvalidResponseException.");
 
     }
 

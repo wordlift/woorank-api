@@ -1,4 +1,4 @@
-package com.woorank.api.ops;
+package com.woorank.api.ops.exceptions;
 
 import com.woorank.api.ops.result.Error;
 import lombok.Getter;

@@ -1,10 +1,10 @@
 package com.woorank.api.ops;
 
+import com.woorank.api.ops.exceptions.InvalidResultException;
 import com.woorank.api.ops.result.Error;
 import com.woorank.api.ops.result.ErrorResponse;
 import com.woorank.api.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
