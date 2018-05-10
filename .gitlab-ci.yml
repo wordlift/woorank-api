@@ -1,0 +1,4 @@
+image: maven:3-jdk-8
+
+job:
+  script: "mvn install -B"
