@@ -1,7 +1,6 @@
 package com.woorank.api.ops;
 
 import com.woorank.api.ops.exceptions.InvalidResponseException;
-import com.woorank.api.ops.exceptions.InvalidResultException;
 import com.woorank.api.ops.result.GetKeywordsDataResult;
 import com.woorank.api.utils.JsonUtils;
 import lombok.AllArgsConstructor;
@@ -67,6 +66,8 @@ public class GetKeywordsDataOperation extends AbstractOperation<HttpGet, GetKeyw
 
         // Finally build the URI.
         val uriWithParameters = builder.build();
+
+        if (log.isTraceEnabled()) log.trace("Creating GET request to " + uri.toString() + "...");
 
         // Return the request.
         return new HttpGet(uriWithParameters);

@@ -10,17 +10,21 @@ import org.apache.http.HttpResponse;
 abstract class AbstractErrorException extends Exception {
 
     @Getter
-    private ErrorResponse error;
+    private ErrorResponse errorResponse;
 
     @SneakyThrows
     AbstractErrorException(HttpResponse response) {
         try {
-            this.error = JsonUtils.getReader()
+            this.errorResponse = JsonUtils.getReader()
                     .forType(ErrorResponse.class)
                     .readValue(response.getEntity().getContent());
         } catch (Exception e) {
-            this.error = new ErrorResponse(Error.UNKNOWN_ERROR);
+            this.errorResponse = new ErrorResponse(Error.UNKNOWN_ERROR);
         }
     }
 
+    @Override
+    public String getMessage() {
+        return this.errorResponse.getError().getMessage();
+    }
 }

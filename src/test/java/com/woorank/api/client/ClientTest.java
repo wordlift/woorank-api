@@ -4,7 +4,6 @@ import com.woorank.api.ops.CreateKeywordsOperation;
 import com.woorank.api.ops.CreateProjectOperation;
 import com.woorank.api.ops.DeleteProjectOperation;
 import com.woorank.api.ops.GetKeywordsDataOperation;
-import com.woorank.api.ops.exceptions.InvalidResultException;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +30,7 @@ class ClientTest {
 
     @Test
     @EnabledIfSystemProperty(named = "woorank.api.key", matches = ".+")
-    void testIntegration() throws Exception, InvalidResultException {
+    void testIntegration() throws Exception {
 
         val client = getClient();
 

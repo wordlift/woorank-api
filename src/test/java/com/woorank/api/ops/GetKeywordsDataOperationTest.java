@@ -1,7 +1,6 @@
 package com.woorank.api.ops;
 
 import com.woorank.api.ops.exceptions.InvalidResponseException;
-import com.woorank.api.ops.exceptions.InvalidResultException;
 import lombok.val;
 import org.apache.http.HttpVersion;
 import org.apache.http.entity.StringEntity;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,7 +46,7 @@ class GetKeywordsDataOperationTest {
     }
 
     @Test
-    void testResponse() throws Exception, InvalidResultException {
+    void testResponse() throws Exception {
 
         val op = new GetKeywordsDataOperation(DOMAIN, COUNTRY, LANGUAGE);
         val response = new BasicHttpResponse(HttpVersion.HTTP_1_1, 200, "OK");

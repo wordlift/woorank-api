@@ -1,6 +1,5 @@
 package com.woorank.api.ops;
 
-import com.woorank.api.ops.exceptions.InvalidResultException;
 import com.woorank.api.ops.result.Error;
 import com.woorank.api.ops.result.ErrorResponse;
 import com.woorank.api.utils.JsonUtils;
