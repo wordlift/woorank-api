@@ -73,7 +73,7 @@ public class GetKeywordsDataOperation extends AbstractOperation<HttpGet, GetKeyw
     }
 
     @Override
-    public GetKeywordsDataResult getResult(HttpResponse response) throws Exception, InvalidResultException {
+    public GetKeywordsDataResult getResult(HttpResponse response) throws Exception {
         val code = response.getStatusLine().getStatusCode();
 
         if (200 != code) throw new InvalidResponseException(response);

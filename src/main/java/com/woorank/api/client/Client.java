@@ -14,7 +14,7 @@ import java.net.URI;
 /**
  * API Client.
  * <p>
- * The API Client performs {@link Operation}s towards Woorank.
+ * The API Client performs {@link Operation}s towards WooRank.
  *
  * @since 1.0.0
  */
@@ -52,7 +52,7 @@ public class Client {
     /**
      * Execute operations.
      * <p>
-     * Execute the provided {@link Operation} towards Woorank's APIs.
+     * Execute the provided {@link Operation} towards WooRank's APIs.
      *
      * @param operation The {@link Operation} to perform.
      * @param <U>       The {@link Operation} result type.
@@ -60,7 +60,7 @@ public class Client {
      * @throws Exception thrown in case of http errors or response conversion errors.
      * @since 1.0.0
      */
-    public <U> U execute(Operation<? extends HttpRequestBase, U> operation) throws Exception, InvalidResultException {
+    public <U> U execute(Operation<? extends HttpRequestBase, U> operation) throws Exception {
 
         if (log.isTraceEnabled()) log.trace("Executing operation " + operation.toString() + "...");
 

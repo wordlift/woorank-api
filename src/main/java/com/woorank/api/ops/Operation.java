@@ -13,14 +13,14 @@ import java.net.URI;
 /**
  * Operation interface
  * <p>
- * Represents an operation that can be performed on Woorank's APIs.
+ * Represents an operation that can be performed on WooRank's APIs.
  * <p>
- * Each operation must provide a {@see toHttpRequest} method to convert the operation into an {@link HttpRequestBase}
- * can be executed using an {@link HttpClient} and a {@see getResult} method which transforms the {@link HttpEntity}
+ * Each operation must provide a toHttpRequest method to convert the operation into an {@link HttpRequestBase}
+ * can be executed using an {@link HttpClient} and a getResult method which transforms the {@link HttpEntity}
  * into an object.
  *
  * @param <T> The type of {@link HttpRequestBase}, e.g. an {@link HttpPost} or an {@link HttpGet}.
- * @param <U> The type of response, can be anything, e.g. {@see String}.
+ * @param <U> The type of response, can be anything, e.g. String.
  * @since 1.0.0
  */
 public interface Operation<T extends HttpRequestBase, U> {
@@ -43,7 +43,7 @@ public interface Operation<T extends HttpRequestBase, U> {
      * @throws Exception thrown in case of errors converting the response.
      * @since 1.0.0
      */
-    U getResult(HttpEntity entity) throws Exception, InvalidResultException;
+    U getResult(HttpEntity entity) throws Exception;
 
     /**
      * Convert the {@link HttpResponse} into the result's object.
@@ -53,6 +53,6 @@ public interface Operation<T extends HttpRequestBase, U> {
      * @throws Exception thrown in case of errors converting the response.
      * @since 1.0.0
      */
-    U getResult(HttpResponse response) throws Exception, InvalidResultException;
+    U getResult(HttpResponse response) throws Exception;
 
 }

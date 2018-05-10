@@ -21,12 +21,12 @@ abstract class AbstractOperation<T extends HttpRequestBase, U> implements Operat
      * @since 1.1.0
      */
     @Override
-    public U getResult(HttpResponse response) throws Exception, InvalidResultException {
+    public U getResult(HttpResponse response) throws Exception {
         return getResult(response.getEntity());
     }
 
     @Override
-    public U getResult(HttpEntity entity) throws Exception, InvalidResultException {
+    public U getResult(HttpEntity entity) throws Exception {
         throw new Exception("Not Implemented.");
     }
 

@@ -1,9 +1,6 @@
 package com.woorank.api.ops;
 
-import com.woorank.api.ops.exceptions.InvalidResponseException;
-import com.woorank.api.ops.exceptions.InvalidResultException;
 import com.woorank.api.utils.JsonEntity;
-import com.woorank.api.utils.JsonUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.val;

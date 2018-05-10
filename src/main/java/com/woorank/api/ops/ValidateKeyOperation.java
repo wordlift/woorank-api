@@ -10,7 +10,7 @@ import java.net.URI;
 /**
  * Operations: Validate Key.
  * <p>
- * Validates the currently configured key, see https://woorank.github.io/api/#tag/authentication
+ * Validates the currently configured key, see https://WooRank.github.io/api/#tag/authentication
  *
  * @since 1.1.0
  */

@@ -21,7 +21,7 @@ import java.util.HashMap;
 /**
  * Operations: Create Project
  * <p>
- * Represents an API {@link Operation} to create a project on Woorank.
+ * Represents an API {@link Operation} to create a project on WooRank.
  *
  * @since 1.0.0
  */
