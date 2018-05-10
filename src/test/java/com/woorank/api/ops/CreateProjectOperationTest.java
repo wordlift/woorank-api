@@ -14,7 +14,6 @@ import org.apache.http.message.BasicHttpResponse;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.util.HashMap;
 

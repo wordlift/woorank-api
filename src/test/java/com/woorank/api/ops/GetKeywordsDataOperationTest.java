@@ -89,9 +89,9 @@ class GetKeywordsDataOperationTest {
 
         val urlResult = url.getResults()[0];
         assertEquals(
-                new URL("http://www.cnn.com/2017/12/15/opinions/federal-judgeships-toobin-opinion/index.html")
+                "http://www.cnn.com/2017/12/15/opinions/federal-judgeships-toobin-opinion/index.html"
                 , urlResult.getFoundUrl(), "Expecting url to match.");
-        assertEquals(5, urlResult.getRank(), "Expecting rank to match.");
+        assertEquals(5, (int)urlResult.getRank(), "Expecting rank to match.");
         assertEquals(Instant.parse("2017-12-16T12:53:32.010Z"), urlResult.getScrapedAt()
                 , "Expecting scrapedAt to match.");
 

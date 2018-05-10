@@ -10,7 +10,7 @@ import org.apache.http.client.methods.HttpDelete;
 import java.net.URI;
 
 @RequiredArgsConstructor
-public class DeleteProjectOperation extends AbstractOperation<HttpDelete, Class<Void>> {
+public class DeleteProjectOperation extends AbstractOperation<HttpDelete, Void> {
 
     private final String domain;
 
@@ -24,7 +24,7 @@ public class DeleteProjectOperation extends AbstractOperation<HttpDelete, Class<
     }
 
     @Override
-    public Class<Void> getResult(HttpResponse response) throws Exception {
+    public Void getResult(HttpResponse response) throws Exception {
 
         val code = response.getStatusLine().getStatusCode();
 
@@ -34,7 +34,7 @@ public class DeleteProjectOperation extends AbstractOperation<HttpDelete, Class<
         // If code is 404, throw an exception.
         if (404 == code) throw new ProjectNotFoundException(response);
 
-        return Void.TYPE;
+        return null;
     }
 
 }

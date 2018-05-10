@@ -3,7 +3,6 @@ package com.woorank.api.ops.result;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 
-import java.net.URL;
 import java.time.Instant;
 
 public class GetKeywordsDataResult {
@@ -41,22 +40,22 @@ public class GetKeywordsDataResult {
         private String url;
 
         @Getter
-        private int twoWeekRank;
+        private Integer twoWeekRank;
 
         @Getter
-        private int prevWeekRank;
+        private Integer prevWeekRank;
 
         @Getter
-        private boolean hasEnteredTopHundred;
+        private Boolean hasEnteredTopHundred;
 
         @Getter
-        private boolean hasLeftTopHundred;
+        private Boolean hasLeftTopHundred;
 
         @Getter
-        private int rankDiff;
+        private Integer rankDiff;
 
         @Getter
-        private int rank;
+        private Integer rank;
 
         @Getter
         private Result[] results;
@@ -70,10 +69,10 @@ public class GetKeywordsDataResult {
         private Instant scrapedAt;
 
         @Getter
-        private int rank;
+        private Integer rank;
 
         @Getter
-        private URL foundUrl;
+        private String foundUrl;
 
     }
 
@@ -89,7 +88,7 @@ public class GetKeywordsDataResult {
     public static class LatestVolume {
 
         @Getter
-        private int volume;
+        private Integer volume;
 
     }
 

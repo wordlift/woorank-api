@@ -1,4 +1,4 @@
-package com.woorank.api;
+package com.woorank.api.client;
 
 import com.woorank.api.ops.exceptions.InvalidResultException;
 import com.woorank.api.ops.Operation;

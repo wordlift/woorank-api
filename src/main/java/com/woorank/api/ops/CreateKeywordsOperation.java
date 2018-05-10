@@ -22,12 +22,7 @@ public class CreateKeywordsOperation extends AbstractOperation<HttpPost, Boolean
     private final String language;
 
     public CreateKeywordsOperation(String domain, String[] keywords, String country) {
-
-        this.domain = domain;
-        this.keywords = keywords;
-        this.country = country;
-        this.language = "default";
-
+        this(domain, keywords, country, "default");
     }
 
     @Override
