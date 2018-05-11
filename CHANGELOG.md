@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.2.0] - 2018-05-11
+## [1.3.0] - 2018-05-11
 
 * Build for public redistribution.
 
