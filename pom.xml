@@ -5,6 +5,41 @@
     <groupId>com.woorank.api</groupId>
     <artifactId>woorank-api</artifactId>
     <version>1.4.0-SNAPSHOT</version>
+    <name>WooRank API Java Client</name>
+    <url>https://github.com/wordlift/woorank-api</url>
+
+    <description>A Java Client for the WooRank API</description>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/wordlift/woorank-api</url>
+        <connection>scm:git:git://github.com/wordlift/woorank-api.git</connection>
+        <developerConnection>scm:git:git@github.com:wordlift/woorank-api.git</developerConnection>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/wordlift/woorank-api/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+    <developers>
+        <developer>
+            <id>ziodave</id>
+            <name>David Riccitelli</name>
+            <email>david@wordlift.io</email>
+            <url>https://wordlift.io</url>
+            <organization>WordLift</organization>
+            <organizationUrl>https://wordlift.io</organizationUrl>
+            <properties>
+                <picUrl>https://secure.gravatar.com/avatar/f1e9e36c0de0bf52635afafd154486db</picUrl>
+            </properties>
+        </developer>
+    </developers>
+
     <build>
         <plugins>
             <plugin>
@@ -88,9 +123,6 @@
         </plugins>
     </build>
     <packaging>jar</packaging>
-
-    <name>woorank-api</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
