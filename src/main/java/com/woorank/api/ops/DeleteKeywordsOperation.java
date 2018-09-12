@@ -27,7 +27,7 @@ public class DeleteKeywordsOperation extends AbstractOperation<HttpDelete, Void>
     @Override
     public HttpDelete toHttpRequest(URI baseUri) throws Exception {
 
-        val uri = baseUri.resolve("/projects/" + this.domain + "/serp/keywords");
+        val uri = baseUri.resolve("/websites/" + this.domain + "/serp/keywords");
 
         // Create a builder on the base URI.
         val builder = new URIBuilder(uri);

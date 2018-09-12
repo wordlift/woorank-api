@@ -22,7 +22,7 @@ class DeleteProjectOperationTest {
         val op = new DeleteProjectOperation(DOMAIN);
         val request = op.toHttpRequest(API_URI);
 
-        assertEquals(URI.create("http://api.example.org/projects/domain.example.org")
+        assertEquals(URI.create("http://api.example.org/websites/domain.example.org")
                 , request.getURI()
                 , "Expecting URI to match.");
         assertEquals("DELETE", request.getMethod(), "Expecting http method to match.");

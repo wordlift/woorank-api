@@ -27,7 +27,7 @@ class GetKeywordsDataOperationTest {
         val op = new GetKeywordsDataOperation(DOMAIN);
         val request = op.toHttpRequest(API_URI);
 
-        assertEquals(URI.create("http://api.example.org/projects/" + DOMAIN + "/serp/keywords-data"), request.getURI()
+        assertEquals(URI.create("http://api.example.org/websites/" + DOMAIN + "/serp/keywords-data"), request.getURI()
                 , "Expecting target URI to match.");
         assertEquals("GET", request.getMethod(), "Expecting http method to be GET.");
 
@@ -39,7 +39,7 @@ class GetKeywordsDataOperationTest {
         val op = new GetKeywordsDataOperation(DOMAIN, COUNTRY, LANGUAGE);
         val request = op.toHttpRequest(API_URI);
 
-        assertEquals(URI.create("http://api.example.org/projects/" + DOMAIN + "/serp/keywords-data?country=us&language=en"), request.getURI()
+        assertEquals(URI.create("http://api.example.org/websites/" + DOMAIN + "/serp/keywords-data?country=us&language=en"), request.getURI()
                 , "Expecting target URI to match.");
         assertEquals("GET", request.getMethod(), "Expecting http method to be GET.");
 

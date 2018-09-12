@@ -30,7 +30,7 @@ class CreateProjectOperationTest {
         val op = new CreateProjectOperation(DOMAIN);
         val request = op.toHttpRequest(API_URI);
 
-        assertEquals(URI.create("http://api.example.org/projects"), request.getURI(), "Expecting URI to be .../projects.");
+        assertEquals(URI.create("http://api.example.org/websites"), request.getURI(), "Expecting URI to be .../websites.");
         assertEquals("POST", request.getMethod(), "Expecting http method to be POST.");
 
         val entity = request.getEntity();
@@ -42,7 +42,7 @@ class CreateProjectOperationTest {
         HashMap<String, Object> params = JsonUtils.getReader().forType(typeRef).readValue(entity.getContent());
 
         assertEquals(DOMAIN, params.get("url"), "Expecting url parameter to be domain.example.org.");
-        assertFalse((boolean) params.get("advanced"), "Expecting advanced parameter to be false by default.");
+        assertTrue((boolean) params.get("project"), "Expecting `project` parameter to be true by default.");
 
     }
 
@@ -52,7 +52,7 @@ class CreateProjectOperationTest {
         val op = new CreateProjectOperation(DOMAIN, true);
         val request = op.toHttpRequest(API_URI);
 
-        assertEquals(URI.create("http://api.example.org/projects"), request.getURI(), "Expecting URI to be .../projects.");
+        assertEquals(URI.create("http://api.example.org/websites"), request.getURI(), "Expecting URI to be .../projects.");
         assertEquals("POST", request.getMethod(), "Expecting http method to be POST.");
 
         val entity = request.getEntity();
@@ -64,7 +64,7 @@ class CreateProjectOperationTest {
         HashMap<String, Object> params = JsonUtils.getReader().forType(typeRef).readValue(entity.getContent());
 
         assertEquals(DOMAIN, params.get("url"), "Expecting url parameter to be domain.example.org.");
-        assertTrue((boolean) params.get("advanced"), "Expecting advanced parameter to be false by default.");
+        assertTrue((boolean) params.get("project"), "Expecting `project` parameter to be true by default.");
 
     }
 
@@ -86,16 +86,12 @@ class CreateProjectOperationTest {
         val result = op.getResult(new StringEntity("{\n" +
                 "  \"data\": {\n" +
                 "    \"id\": \"bbc.com\",\n" +
-                "    \"review\": {\n" +
-                "      \"advanced\": true,\n" +
-                "      \"lastScore\": 76\n" +
-                "    }\n" +
+                "    \"isProject\": true\n" +
                 "  }\n" +
                 "}", "UTF-8"));
 
         assertEquals("bbc.com", result.getData().getId(), "Expecting id to be bbc.com.");
-        assertTrue(result.getData().getReview().isAdvanced(), "Expecting isAdvanced to be true.");
-        assertEquals(76, result.getData().getReview().getLastScore(), "Expecting lastScore to be 76.");
+        assertTrue(result.getData().getIsProject(), "Expecting isProject to be true.");
 
     }
 

@@ -17,7 +17,7 @@ public class DeleteProjectOperation extends AbstractOperation<HttpDelete, Void> 
     @Override
     public HttpDelete toHttpRequest(URI baseUri) {
 
-        val uri = baseUri.resolve("/projects/" + this.domain);
+        val uri = baseUri.resolve("/websites/" + this.domain);
         val request = new HttpDelete(uri);
 
         return request;

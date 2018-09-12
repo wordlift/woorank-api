@@ -13,17 +13,7 @@ public class CreateProjectResult {
         private String id;
 
         @Getter
-        private Review review;
-
-    }
-
-    public static class Review {
-
-        @Getter
-        private boolean advanced;
-
-        @Getter
-        private int lastScore;
+        private Boolean isProject;
 
     }
 

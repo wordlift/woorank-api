@@ -34,7 +34,7 @@ public class CreateProjectOperation extends AbstractOperation<HttpPost, CreatePr
      *
      * @since 1.0.0
      */
-    private final static URI RELATIVE_URI = URI.create("/projects");
+    private final static URI RELATIVE_URI = URI.create("/websites");
 
     /**
      * The project's domain.
@@ -48,7 +48,7 @@ public class CreateProjectOperation extends AbstractOperation<HttpPost, CreatePr
      *
      * @since 1.1.0
      */
-    private final boolean advanced;
+    private final boolean project;
 
     /**
      * Create a {@link CreateProjectOperation} instance.
@@ -58,7 +58,7 @@ public class CreateProjectOperation extends AbstractOperation<HttpPost, CreatePr
      */
     public CreateProjectOperation(String domain) {
         this.domain = domain;
-        this.advanced = false;
+        this.project = true;
     }
 
     /**
@@ -117,7 +117,7 @@ public class CreateProjectOperation extends AbstractOperation<HttpPost, CreatePr
 
         val map = new HashMap<String, Object>();
         map.put("url", this.domain);
-        map.put("advanced", this.advanced);
+        map.put("project", this.project);
 
         return new JsonEntity(map);
     }

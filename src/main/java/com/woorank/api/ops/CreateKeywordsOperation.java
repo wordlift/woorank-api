@@ -1,5 +1,6 @@
 package com.woorank.api.ops;
 
+import com.woorank.api.ops.exceptions.InvalidResponseException;
 import com.woorank.api.utils.JsonEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -25,7 +26,7 @@ public class CreateKeywordsOperation extends AbstractOperation<HttpPost, Boolean
     @Override
     public HttpPost toHttpRequest(URI baseUri) {
 
-        val uri = baseUri.resolve("/projects/" + this.domain + "/serp/keywords");
+        val uri = baseUri.resolve("/websites/" + this.domain + "/serp/keywords");
         val post = new HttpPost(uri);
         post.setEntity(getJsonEntity());
 
@@ -33,11 +34,13 @@ public class CreateKeywordsOperation extends AbstractOperation<HttpPost, Boolean
     }
 
     @Override
-    public Boolean getResult(HttpResponse response) {
+    public Boolean getResult(HttpResponse response) throws InvalidResponseException {
 
         val code = response.getStatusLine().getStatusCode();
 
-        return 200 == code;
+        if (200 != code) throw new InvalidResponseException(response);
+
+        return true;
     }
 
     @SneakyThrows

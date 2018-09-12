@@ -38,7 +38,7 @@ class ClientTest {
         val result1 = client.execute(op1);
 
         assertEquals(DOMAIN, result1.getData().getId(), "Expecting the id to match the domain.");
-        assertTrue(result1.getData().getReview().isAdvanced(), "Expecting the advanced flag to be true.");
+        assertTrue(result1.getData().getIsProject(), "Expecting the project flag to be true.");
 
         val op2 = new CreateKeywordsOperation(DOMAIN, new String[]{
                 "example",

@@ -55,7 +55,7 @@ public class GetKeywordsDataOperation extends AbstractOperation<HttpGet, GetKeyw
     public HttpGet toHttpRequest(URI baseUri) throws URISyntaxException {
 
         // Set the domain in the path.
-        val uri = baseUri.resolve("/projects/" + this.domain + "/serp/keywords-data");
+        val uri = baseUri.resolve("/websites/" + this.domain + "/serp/keywords-data");
 
         // Create a builder on the base URI.
         val builder = new URIBuilder(uri);

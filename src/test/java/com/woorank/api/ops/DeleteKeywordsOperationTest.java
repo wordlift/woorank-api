@@ -25,7 +25,7 @@ class DeleteKeywordsOperationTest {
         val op = new DeleteKeywordsOperation(DOMAIN, keywords, COUNTRY, LANGUAGE);
         val request = op.toHttpRequest(API_URI);
 
-        assertEquals(URI.create("http://api.example.org/projects/domain.example.org/serp/keywords?keywords=lorem&country=us&language=en")
+        assertEquals(URI.create("http://api.example.org/websites/domain.example.org/serp/keywords?keywords=lorem&country=us&language=en")
                 , request.getURI()
                 , "Expecting URI to match.");
         assertEquals("DELETE", request.getMethod(), "Expecting http method to match.");
@@ -39,7 +39,7 @@ class DeleteKeywordsOperationTest {
         val op = new DeleteKeywordsOperation(DOMAIN, keywords, COUNTRY, LANGUAGE);
         val request = op.toHttpRequest(API_URI);
 
-        assertEquals(URI.create("http://api.example.org/projects/domain.example.org/serp/keywords?keywords=lorem%2Cipsum&country=us&language=en")
+        assertEquals(URI.create("http://api.example.org/websites/domain.example.org/serp/keywords?keywords=lorem%2Cipsum&country=us&language=en")
                 , request.getURI()
                 , "Expecting URI to match.");
         assertEquals("DELETE", request.getMethod(), "Expecting http method to match.");
@@ -53,7 +53,7 @@ class DeleteKeywordsOperationTest {
         val op = new DeleteKeywordsOperation(DOMAIN, keywords, COUNTRY);
         val request = op.toHttpRequest(API_URI);
 
-        assertEquals(URI.create("http://api.example.org/projects/domain.example.org/serp/keywords?keywords=lorem%2Cipsum&country=us&language=default")
+        assertEquals(URI.create("http://api.example.org/websites/domain.example.org/serp/keywords?keywords=lorem%2Cipsum&country=us&language=default")
                 , request.getURI()
                 , "Expecting URI to match.");
         assertEquals("DELETE", request.getMethod(), "Expecting http method to match.");

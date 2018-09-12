@@ -1,6 +1,7 @@
 package com.woorank.api.ops;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.woorank.api.ops.exceptions.InvalidResponseException;
 import com.woorank.api.utils.JsonEntity;
 import com.woorank.api.utils.JsonUtils;
 import lombok.val;
@@ -34,7 +35,7 @@ class CreateKeywordsOperationTest {
         val op = new CreateKeywordsOperation(DOMAIN, KEYWORDS, COUNTRY);
         val request = op.toHttpRequest(API_URI);
 
-        assertEquals(URI.create("http://api.example.org/projects/domain.example.org/serp/keywords"), request.getURI()
+        assertEquals(URI.create("http://api.example.org/websites/domain.example.org/serp/keywords"), request.getURI()
                 , "Expecting API URI to match.");
         assertEquals("POST", request.getMethod(), "Expecting http method to be POST.");
 
@@ -58,7 +59,7 @@ class CreateKeywordsOperationTest {
         val op = new CreateKeywordsOperation(DOMAIN, KEYWORDS, COUNTRY, LANGUAGE);
         val request = op.toHttpRequest(API_URI);
 
-        assertEquals(URI.create("http://api.example.org/projects/domain.example.org/serp/keywords"), request.getURI()
+        assertEquals(URI.create("http://api.example.org/websites/domain.example.org/serp/keywords"), request.getURI()
                 , "Expecting API URI to match.");
         assertEquals("POST", request.getMethod(), "Expecting http method to be POST.");
 
@@ -77,7 +78,7 @@ class CreateKeywordsOperationTest {
     }
 
     @Test
-    void testStatusCode200() {
+    void testStatusCode200() throws InvalidResponseException {
 
         val op = new CreateKeywordsOperation(DOMAIN, KEYWORDS, COUNTRY, LANGUAGE);
         val response = new BasicHttpResponse(HttpVersion.HTTP_1_1, 200, "OK");
@@ -98,9 +99,8 @@ class CreateKeywordsOperationTest {
 
         val op = new CreateKeywordsOperation(DOMAIN, KEYWORDS, COUNTRY, LANGUAGE);
         val response = new BasicHttpResponse(HttpVersion.HTTP_1_1, 500, "Server Errors");
-        val result = op.getResult(response);
 
-        assertFalse(result, "Expecting result to be false.");
+        assertThrows(InvalidResponseException.class, () -> op.getResult(response));
 
     }
 
