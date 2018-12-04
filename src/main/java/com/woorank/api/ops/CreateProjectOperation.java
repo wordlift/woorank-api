@@ -1,5 +1,6 @@
 package com.woorank.api.ops;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.woorank.api.ops.exceptions.InvalidResponseException;
 import com.woorank.api.ops.exceptions.MaximumNumberOfAdvancedReviewsReachedException;
 import com.woorank.api.ops.exceptions.ProjectAlreadyExistsException;
@@ -7,6 +8,7 @@ import com.woorank.api.ops.exceptions.UrlCannotBeResolvedException;
 import com.woorank.api.ops.result.CreateProjectResult;
 import com.woorank.api.utils.JsonEntity;
 import com.woorank.api.utils.JsonUtils;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -93,7 +95,7 @@ public class CreateProjectOperation extends AbstractOperation<HttpPost, CreatePr
         // 403 When the maximum number of advanced reviews have been reached.
         if (403 == code) throw new MaximumNumberOfAdvancedReviewsReachedException(response);
 
-        // 403 When the maximum number of advanced reviews have been reached.
+        // 409 When a project exists already.
         if (409 == code) throw new ProjectAlreadyExistsException(response);
 
         return getResult(response.getEntity());

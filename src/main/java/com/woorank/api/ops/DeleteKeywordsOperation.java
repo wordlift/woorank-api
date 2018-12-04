@@ -2,6 +2,7 @@ package com.woorank.api.ops;
 
 import com.woorank.api.ops.exceptions.InvalidResponseException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
@@ -10,6 +11,7 @@ import org.apache.http.client.utils.URIBuilder;
 import java.net.URI;
 
 @RequiredArgsConstructor
+@Slf4j
 public class DeleteKeywordsOperation extends AbstractOperation<HttpDelete, Void> {
 
     private final String domain;
@@ -41,6 +43,8 @@ public class DeleteKeywordsOperation extends AbstractOperation<HttpDelete, Void>
 
         // Finally build the URI.
         val uriWithParameters = builder.build();
+
+        if (log.isTraceEnabled()) log.trace("Going to call {}...", uriWithParameters);
 
         return new HttpDelete(uriWithParameters);
     }

@@ -49,6 +49,17 @@ public class GetKeywordsDataOperation extends AbstractOperation<HttpGet, GetKeyw
     private String language;
 
     /**
+     * Include unranked keywords.
+     *
+     * @since 1.18.0
+     */
+    private boolean includeUnranked;
+
+    public GetKeywordsDataOperation(String domain, String country, String language) {
+        this(domain, country, language, false);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -63,6 +74,7 @@ public class GetKeywordsDataOperation extends AbstractOperation<HttpGet, GetKeyw
         // Add the country and language parameters if provided.
         if (null != country) builder.addParameter("country", country);
         if (null != language) builder.addParameter("language", language);
+        builder.addParameter("includeUnranked", includeUnranked ? "true" : "false");
 
         // Finally build the URI.
         val uriWithParameters = builder.build();
