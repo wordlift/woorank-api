@@ -5,12 +5,13 @@ import lombok.Getter;
 
 import java.time.Instant;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GetKeywordsDataResult {
 
     @Getter
     private Data[] data;
 
-    @JsonIgnoreProperties("id")
+    @JsonIgnoreProperties(value = "id", ignoreUnknown = true)
     public static class Data {
 
         @Getter
@@ -33,7 +34,7 @@ public class GetKeywordsDataResult {
 
     }
 
-    @JsonIgnoreProperties("id")
+    @JsonIgnoreProperties(value = "id", ignoreUnknown = true)
     public static class Url {
 
         @Getter
@@ -62,7 +63,7 @@ public class GetKeywordsDataResult {
 
     }
 
-    @JsonIgnoreProperties({"id", "scraped_at", "found_url"})
+    @JsonIgnoreProperties(value = {"id", "scraped_at", "found_url"}, ignoreUnknown = true)
     public static class Result {
 
         @Getter
@@ -76,7 +77,7 @@ public class GetKeywordsDataResult {
 
     }
 
-    @JsonIgnoreProperties({"id", "keyword_id", "keywordId", "scraped_at"})
+    @JsonIgnoreProperties(value = {"id", "keyword_id", "keywordId", "scraped_at"}, ignoreUnknown = true)
     public static class LatestResult {
 
         @Getter
@@ -84,7 +85,7 @@ public class GetKeywordsDataResult {
 
     }
 
-    @JsonIgnoreProperties({"id", "keyword_id", "keywordId"})
+    @JsonIgnoreProperties(value = {"id", "keyword_id", "keywordId"}, ignoreUnknown = true)
     public static class LatestVolume {
 
         @Getter

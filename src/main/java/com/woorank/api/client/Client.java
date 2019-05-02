@@ -43,7 +43,7 @@ public class Client {
      */
     public Client(Signer signer) {
 
-        this.uri = URI.create("https://api.woorank.com");
+        this.uri = URI.create("https://api.woorank.com/v1");
         this.signer = signer;
 
     }

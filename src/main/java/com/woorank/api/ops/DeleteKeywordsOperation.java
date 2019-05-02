@@ -8,7 +8,11 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.utils.URIBuilder;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URLEncoder;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -35,7 +39,18 @@ public class DeleteKeywordsOperation extends AbstractOperation<HttpDelete, Void>
         val builder = new URIBuilder(uri);
 
         // Add the keywords parameter.
-        if (null != keywords) builder.addParameter("keywords", String.join(",", keywords));
+        if (null != keywords) {
+            val escaped = Arrays.stream(keywords)
+                    .map(k -> {
+                        try {
+                            return URLEncoder.encode(k, "UTF-8");
+                        } catch (UnsupportedEncodingException e) {
+                            return k;
+                        }
+                    })
+                    .collect(Collectors.joining(","));
+            builder.addParameter("keywords", escaped);
+        }
 
         // Add the country and language parameters if provided.
         if (null != country) builder.addParameter("country", country);
